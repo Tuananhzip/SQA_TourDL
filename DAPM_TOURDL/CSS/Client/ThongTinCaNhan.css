@@ -1,0 +1,117 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "poppins", sans-serif;
+}
+
+body {
+    overflow-x: hidden;
+    background: #EEE;
+    /*background: url(../../Images/Client/Profile/cityHCM.jpg) !important;*/
+    /*background: linear-gradient(to bottom right, #70c1ff, #7c8696);*/
+/*    background: linear-gradient(to right, #ee5a6f, #f29263);
+*/}
+#footer{
+    display:none;
+}
+.containers {
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.profile-box {
+    background: linear-gradient(to bottom right,#2D9596,#9AD0C2,#ECF4D6);
+    text-align: center;
+    padding: 40px 90px;
+    color: #fff;
+    position: relative;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+    .profile-box a{
+        text-decoration:none;
+        color:white;
+        font-weight:500;
+    }
+.invoice-icon {
+    left: 40px;
+}
+.pen-icon {
+    right: 40px;
+}
+.pen-icon, .invoice-icon {
+    width: 25px;
+    font-size: 30px;
+    top: 40px;
+    position: absolute;
+    transition: 0.6s;
+    color: #F9F9F9;
+    cursor: pointer;
+}
+
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 55%;
+    background: #fff;
+    padding: 6px;
+    margin-top: 40px;
+}
+
+.social-media i {
+    font-size:32px;
+    width: 50px;
+    margin: 30px 5px;
+    cursor: pointer;
+    color:#F9F9F9;
+}
+    .profile-bottom {
+        background: #fff;
+        color: #999;
+        padding: 60px 0px;
+        margin-right: -90px;
+        margin-left: -90px;
+        margin-bottom: -40px;
+        border-radius: 20px;
+        margin-top: -10px;
+    }
+/*
+.profile-box button {
+    background: #fff;
+    color: #0094ff;
+    border: none;
+    outline: none;
+    box-shadow: 0 5px 10px rgba(60, 170, 255, 0.5);
+    padding: 15px 60px;
+    cursor: pointer;
+    border-radius: 30px;
+    margin-bottom: -50px;
+    font-weight: 700;
+    font-size: 16px;
+}*/
+.profile-box h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 20px 0 10px 0;
+}
+.profile-bottom p{
+    color: #45474B;
+    font-weight:bold;
+    font-size:16px;
+}
+.profile-box img{
+    transition: 0.6s;
+    object-fit: fill;
+}
+.profile-box .invoice-icon:hover, .profile-box .pen-icon:hover {
+    transform: scale(1.6);
+}

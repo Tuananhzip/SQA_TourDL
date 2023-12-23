@@ -1,0 +1,103 @@
+﻿@model IEnumerable<DAPM_TOURDL.Models.KHACHHANG>
+
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Quản Lý Khách Hàng</title>
+    <link rel="stylesheet" href="~/CSS/Admin/AdminIndex.css" />
+</head>
+
+<body>
+    <div class="box">
+        <h2 style="">QUẢN LÝ KHÁCH HÀNG</h2>
+        <form asp-action="Index" method="get">
+            <input type="text" name="SearchString" placeholder="Tìm kiếm qua gmail hoặc tên" class="searchBox form-control" />
+        </form>
+        <button class="btnCreate btn btn-dark ">@Html.ActionLink("Thêm mới khách hàng", "Create")</button>
+    </div>
+    <div class="box mt-3">
+        <div style="position:relative">
+            <h3 class="text-center">Danh Sách Khách Hàng</h3>
+            <button class="excelbtn btn btn-dark" style="position:absolute; right:20px;top:3px;">
+                @Html.ActionLink("Xuất excel ", "ExportToExcel")
+            </button>
+        </div>
+        <div class="box mt-3" id="listBox">
+            <div class="fixTableHead">
+                <table class=" table-bordered table-sm table-striped text-center table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                ID
+                            </th>
+                            <th>
+                                Họ và Tên
+                            </th>
+                            <th>
+                                Giới Tính
+                            </th>
+                            <th>
+                                Ngày Sinh
+                            </th>
+                            <th>
+                                SĐT
+                            </th>
+                            <th>
+                                Email
+                            </th>
+                            <th>
+                                Điểm
+                            </th>
+                            <th>
+                                Hành Động
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                         {
+
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ID_KH)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.HoTen_KH)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.GioiTinh_KH)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NgaySinh_KH)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SDT_KH)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Mail_KH)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Diem)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.ID_KH }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.ID_KH }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.ID_KH })
+                                </td>
+                            </tr>
+                         }
+                    </tbody>
+
+
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

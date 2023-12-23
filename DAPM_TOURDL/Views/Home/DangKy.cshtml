@@ -1,0 +1,55 @@
+﻿@model DAPM_TOURDL.Models.KHACHHANG
+
+@{
+    ViewBag.Title = "Đăng Ký";
+    Layout = null;
+}
+<head>
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8" />
+    <link rel="icon" href="~/Images/logo3.jpg" />
+    <link href="~/CSS/Client/LoginAndSignUp.css" rel="stylesheet" />
+</head>
+
+@using (Html.BeginForm("DangKy", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <form action="#">
+        <h1>Đăng Ký Tài Khoản</h1>
+        <div class="infield">
+            @Html.EditorFor(model => model.HoTen_KH, new { htmlAttributes = new { @class = "input", placeholder = "Họ Tên", @required = "required" } })
+            <label></label>
+        </div>
+        <div class="infield">
+            Giới Tính:
+            @Html.RadioButtonFor(model => model.GioiTinh_KH, "Nam", new { @checked = "checked" }) Nam
+            @Html.RadioButtonFor(model => model.GioiTinh_KH, "Nữ") Nữ
+        </div>
+        <div class="infield">
+            @Html.EditorFor(model => model.NgaySinh_KH, new { htmlAttributes = new { @class = "input", placeholder = "", type = "date", @required = "required" } })
+            <label></label>
+        </div>
+        <div class="infield">
+            @Html.EditorFor(model => model.MatKhau, new { htmlAttributes = new { @class = "input", placeholder = "Mật Khẩu", type = "password", @required = "required" } })
+            <label></label>
+        </div>
+        <div class="infield">
+            @Html.EditorFor(model => model.CCCD, new { htmlAttributes = new { @class = "input", placeholder = "Căn Cước Công Dân", @required = "required" } })
+            <label></label>
+        </div>
+        <div class="infield">
+            @Html.EditorFor(model => model.SDT_KH, new { htmlAttributes = new { @class = "input", placeholder = "Số Điện Thoại", @required = "required" } })
+            <label></label>
+        </div>
+        <div class="infield">
+            @Html.EditorFor(model => model.Mail_KH, new { htmlAttributes = new { @class = "input", placeholder = "Email", @required = "required" } })
+            <label></label>
+        </div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="sign-up-btn">
+            <button type="submit" style="">Đăng Ký</button>
+            @*<label style="color:red;text-align:center" id="notification">@ViewBag.Notification</label>*@
+        </div>
+
+    </form>
+}

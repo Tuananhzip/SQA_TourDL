@@ -1,0 +1,26 @@
+﻿@model  IEnumerable<DAPM_TOURDL.Models.TOUR>
+@{
+    ViewBag.Title = "Danh Mục Sản Phẩm Tour";
+    Layout = "~/Views/Shared/ClientLayout.cshtml";
+}
+<link rel="stylesheet" href="~/CSS/Client/DanhMucTour.css" />
+<div class="head">
+    <div class="content-main">Danh Mục Tour </div>
+    <video autoplay loop muted plays-inline class="hero-image"><source src="~/Images/Client/Video/ocean.mp4" /></video>
+</div>
+<div class="container" style="width:100%;height:auto;">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+        @foreach (var item in Model)
+        {
+            <div class="col col-danhmuctour">
+                <div class="card" style="margin:20px 40px;border-radius:15px;box-shadow:1px 0px 5px #808080">
+                    <img class="card-img-top" src="~/Images/Admin/TOUR/@item.HinhTour" alt="Card image cap">
+                    <div class="card-body" style="text-align:left;">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.TenTour)</h5>
+                        <a href="@Url.Action("DanhMucTour", "Home" , new { name = item.TenTour})" class="btn-more">Xem Thêm</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

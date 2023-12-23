@@ -1,0 +1,100 @@
+﻿@model DAPM_TOURDL.Models.KHACHHANG
+
+@{
+    ViewBag.Title = "Thông Tin Cá Nhân";
+    Layout = "~/Views/Shared/ClientLayout.cshtml";
+}
+<link rel="stylesheet" href="~/CSS/Client/ThongTinCaNhan.css" />
+<div class="head">
+    <div class="content-main">Thông tin cá nhân</div>
+    <video autoplay loop muted plays-inline class="hero-image"><source src="~/Images/Client/Video/ocean.mp4" /></video>
+</div>
+<body>
+    @if (ViewBag.SuccessMessage != null)
+    {
+        <div class="alert alert-success" id="successAlert">
+            @ViewBag.SuccessMessage
+        </div>
+    }
+    <div class="containers shadow-sm rounded">
+        <div class="profile-box">
+            <i class="fa-solid fa-file-invoice-dollar invoice-icon" id="invoice-icon"></i>
+            <i class="fa-solid fa-pen-to-square pen-icon" id="pen-icon"></i>
+            @{
+                if (Model.GioiTinh_KH == "Nam")
+                {
+                    <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="profile-pic" alt="User-Profile-Image">
+                }
+                else if (Model.GioiTinh_KH == "Nữ")
+                {
+                    <img src="https://img.icons8.com/bubbles/50/blond-long-hair-business-lady.png" class="profile-pic" alt="User-Profile-Image">
+                }
+                else
+                {
+                    <img src="https://img.icons8.com/bubbles/50/gender-neutral-user.png" class="profile-pic" alt="User-Profile-Image">
+                }
+            }
+            <h3>@Model.HoTen_KH</h3>
+            <p>@Model.Mail_KH</p>
+            <div class="social-media">
+                <i class="fa-brands fa-facebook"></i>
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-twitter"></i>
+            </div>
+            <div class="profile-bottom">
+                <div class="row row-cols-2 px-3">
+                    <p>
+                        Ngày sinh: @Model.NgaySinh_KH
+                    </p>
+                    <p>
+                        Giới tính: @Model.GioiTinh_KH
+                    </p>
+                    <p>
+                        Số điện thoại: @Model.SDT_KH
+                    </p>
+                    <p>
+                        CCCD: @Model.CCCD
+                    </p>
+                    <p>
+                        @Html.ActionLink("Đổi mật khẩu", "DoiMatKhau", new { id = Model.ID_KH }, new { @class = "btn btn-primary btn-sm" })
+                    </p>
+                    @{
+                        if (Model.Diem != null)
+                        {
+                            <p>
+                                Điểm: @Model.Diem
+                            </p>
+                        }
+                        else
+                        {
+                            <p>
+                                Điểm: 0
+                            </p>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+
+    var invoiceIcon = document.getElementById('invoice-icon');
+    var penIcon = document.getElementById('pen-icon');
+    invoiceIcon.addEventListener('click', () => {
+        var idUser = '@Model.ID_KH';
+        window.location.href = '@Url.Action("LichSuDatTour", "Home")/' + idUser;
+    });
+    penIcon.addEventListener('click', () => {
+        var idUser = '@Model.ID_KH';
+        window.location.href = '@Url.Action("ChinhSuaThongTinCaNhan", "Home")/' + idUser;
+    })
+
+    $(document).ready(function () {
+        setTimeout(function () {
+            $("#successAlert").fadeOut("slow", function () {
+                $(this).remove();
+            });
+        }, 5000);
+    });
+</script>

@@ -1,0 +1,122 @@
+body {
+    padding: 0px;
+    margin: 0px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow-x: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.nav-item .nav-link {
+    color: white;
+}
+
+    .nav-item .nav-link:hover {
+        color: rgba(0,0,0,0.7);
+    }
+
+.btn-search {
+    background-color: #2D9596;
+    border: none;
+    color: #F4F7F7;
+    font-size: 22px;
+    font-weight: 600;
+    border-radius: 10px;
+    height: 40px;
+    width: 120px;
+}
+    .btn-search:hover {
+        background-color: #176B87;
+        transition: ease-out 0.5s;
+    }
+
+.btn-more {
+    background-color: #2D9596;
+    border: none;
+    color: #F4F7F7;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 6px;
+    padding: 10px 20px;
+    text-decoration: none;
+    text-align: center;
+    float: right;
+}
+
+    .btn-more:hover {
+        background-color: #176B87;
+        transition: ease-out 0.5s;
+    }
+/*Phân trang
+*/
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-right: 5px;
+}
+
+    .pagination a {
+        color: #191717;
+        padding: 8px 16px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+        background-color: #F4F7F7;
+        font-weight: bold;
+    }
+
+    .pagination .active a{
+        background: #2D9596 !important;
+        color: #F4F7F7 ;
+    }
+
+    .pagination .prev, .pagination .next {
+        margin: 0 5px;
+        border-radius: 10px;
+    }
+
+    .pagination a:hover:not(.active) {
+        background-color: #F1EFEF;
+    }
+
+    .pagination a, .pagination .prev, .pagination .next {
+        font-size: 16px;
+    }
+
+.col-danhmuctour img {
+    width: 100%;
+    height: 33.3vh;
+    object-fit: cover;
+    border-radius: 15px 15px 2px 2px;
+}
+
+.col-danhmuctour p {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.col-danhmuctour h5 {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+ul {
+    list-style-type: none;
+}
+
+@media only screen and (max-width: 992px) {
+    select, option {
+        font-size: 16px !important;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    select, option {
+        font-size: 12px !important;
+    }
+}

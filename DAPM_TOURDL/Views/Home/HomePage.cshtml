@@ -1,0 +1,91 @@
+﻿@model IEnumerable<DAPM_TOURDL.Models.TOUR>
+@{
+    ViewBag.Title = "Trang Chủ";
+    Layout = "~/Views/Shared/ClientLayout.cshtml";
+}
+<head>
+    <link rel="stylesheet" href="~/CSS/Client/HomePage.css" />
+</head>
+<body>
+    <div class="wrap">
+        <div class="home">
+            <div class="content">
+                <video autoplay loop muted plays-inline class="back-video-image"><source src="~/Images/Client/Video/vietnam_-_25171 (Original).mp4" /></video>
+                <br /><br /><br /><br />
+                <div class="row col-sm-12 d-flex justify-content-center">
+                    <h1>Bạn muốn đi du lịch<span class="changecontent"></span></h1>
+                    <p>Cùng khám phá và trải nghiệm những điều thú vị mà chúng tôi sắp mang đến cho bạn</p>
+                </div>
+            </div>
+        </div>
+        <div class="mt-5 overflow-hidden bg-white">
+            <div class="card mb-3 card-tour pt-5 py-5">
+                <div class="row g-0">
+                    <div class="col-md-6 animate">
+                        <img src="~/Images/Client/HomePage/NhaTrang.jpg" class="img-fluid image-view" alt="Nha Trang">
+                    </div>
+                    <div class="col-md-6 animate">
+                        <div class="card-body" style="text-align:left">
+                            <h3 class="card-title animate" style="text-transform:uppercase">chúng tôi <font color="#0094ff">cung cấp</font></h3>
+                            <p class="animate" style="font-size:20px">
+                                Với đội ngũ nhân viên nhiệt tình, giàu kinh nghiệm và giàu kiến thức về du lịch, chúng tôi không chỉ cung cấp cho khách hàng các dịch vụ chuyên nghiệp mà còn giúp khách hàng lên kế hoạch chuyến đi một cách tỉ mỉ và hiệu quả nhất.
+                            </p>
+                            <p class="animate" style="font-size:20px;">
+                                Cung cấp đầy đủ các dịch vụ du lịch, bao gồm đặt vé máy bay, đặt khách sạn, tour du lịch, vé tham quan, hướng dẫn viên du lịch, và nhiều dịch vụ khác liên quan đến hoạt động du lịch.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 card-tour pt-5 py-5">
+                <div class="row g-0 ">
+                    <div class="col-md-6 animate">
+                        <div class="card-body" style="text-align:left">
+                            <h3 class="card-title animate" style="text-transform:uppercase">chúng tôi <font color="#0094ff">đảm bảo</font> </h3>
+                            <p class="animate" style="font-size:20px;">
+                                Mang đến cho khách hàng những trải nghiệm du lịch tuyệt vời và đảm bảo sự hài lòng của khách hàng.
+                            </p>
+                            <p class="animate" style="font-size:20px;">
+                                Để đảm bảo chất lượng dịch vụ, chúng tôi luôn lựa chọn những đối tác tin cậy trong ngành du lịch, từ các hãng hàng không, khách sạn, đến các nhà cung cấp dịch vụ khác. Chúng tôi đảm bảo rằng các đối tác của chúng tôi đều đáp ứng được các tiêu chuẩn chất lượng cao và đáp ứng các yêu cầu khắt khe của khách hàng.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 animate">
+                        <img src="~/Images/Client/HomePage/VinhHaLong.jpg" class="img-fluid image-view" alt="Vịnh Hạ Long">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-wrap">
+            <img src="~/Images/Client/HomePage/Beach.png" class="background-wrap" />
+            <img src="~/Images/Client/HomePage/Sun.png" class="leftground" />
+            <img src="~/Images/Client/HomePage/leaf.png" class="foreground" />
+            <h1 class="title-wrap">Welcome To Viet Travel!</h1>
+        </div>
+        <div class="row bg-white">
+            @* xuất dữ liệu các tour từ database *@
+            @foreach (var item in Model)
+            {
+                <p class="title-tours">@item.TenTour</p>
+                <div class="col-md-3 col-tours">
+                    <div class="wrapper">
+                        <div class="wrapper-image" style="overflow:hidden">
+                            <a href="@Url.Action("DanhMucTour", "Home", new {name = item.TenTour})">
+                                <img src="~/Images/Admin/TOUR/@item.HinhTour" class="animate" alt="@item.TenTour" />
+                                <div class="wrapper-content">
+                                    <h3>@Html.DisplayFor(modelItem => item.TenTour)</h3>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <button>
+            <a href="@Url.Action("Payment","Home")">Thanh toán</a>
+        </button>
+    </div>
+</body>
+<script type="text/javascript">
+    var titleTours = document.getElementById("title-tour")
+</script>

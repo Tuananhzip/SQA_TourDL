@@ -1,0 +1,38 @@
+@model DAPM_TOURDL.Models.KHACHHANG
+
+@{
+    ViewBag.Title = "Đăng Ký";
+    Layout = null;
+}
+<head>
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8" />
+    <link rel="icon" href="~/Images/logo3.jpg" />
+    <link href="~/CSS/Client/LoginAndSignUp.css" rel="stylesheet" />
+</head>
+
+@using (Html.BeginForm("DangNhap", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+<form action="#">
+    <h1>Đăng Nhập</h1>
+    <div class="infield">
+        @Html.EditorFor(model => model.Mail_KH, new { htmlAttributes = new { @class = "input", placeholder = "Email", @required = "required", type = "email" } })
+        <label></label>
+    </div>
+    <div class="infield">
+        @Html.EditorFor(model => model.MatKhau, new { htmlAttributes = new { @class = "input", placeholder = "Mật Khẩu", type = "password", @required = "required" } })
+        @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+        <label></label>
+    </div>
+    <a class="forgot">Quên mật khẩu?</a>
+    <button type="submit">Đăng Nhập</button>
+    <label style="color:red;text-align:center">@ViewBag.Notification</label>
+    @if (ViewBag.Mes != null)
+    {
+        <div class="message">
+            @ViewBag.Mes
+        </div>
+    }
+</form>
+}

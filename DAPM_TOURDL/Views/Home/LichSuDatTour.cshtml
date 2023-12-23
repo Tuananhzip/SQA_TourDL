@@ -1,0 +1,146 @@
+@model IEnumerable<DAPM_TOURDL.Models.HOADON>
+
+@{
+    ViewBag.Title = "Lịch Sử Đặt Tour";
+    Layout = "~/Views/Shared/ClientLayout.cshtml";
+}
+<link rel="stylesheet" href="~/CSS/Client/LichSuDatTour.css" />
+<link rel="stylesheet" href="~/Scripts/bootstrap.min.js" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<div class="btn-back-profile m-4">
+    @Html.ActionLink("Quay lại", "ThongTinCaNhan", new { id = Session["IDUser"] })
+</div>
+
+<!-- Popup -->
+<div id="ModalDelete" class="modal fade" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content"></div>
+    </div>
+</div>
+<!-- Popup -->
+<h2 class="text-center text-uppercase fw-bold">Lịch sử tour đã đặt</h2>
+@if (ViewBag.Mes != null)
+{
+    <div class="alert alert-warning">@ViewBag.Mes</div>
+}
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+@foreach (var item in Model)
+{
+    var currentTime = DateTime.Now;
+    var paymentTime = currentTime.AddDays(7);
+    string formatTongTien = String.Format("{0:C}", item.TongTienTour);
+    string formatTienPhaiTra = String.Format("{0:C}", item.TienPhaiTra);
+    string formatTienKhuyenMai = String.Format("{0:C}", item.TienKhuyenMai);
+    var Vat = item.TienPhaiTra - item.TongTienTour;
+    string formatVat = String.Format("{0:C}", Vat);
+    var soluong = item.SLNguoiLon + item.SLTreEm;
+    <div class="container-md border my-5 shadow-sm rounded">
+        <div class="d-flex justify-content-between">
+            <h3 class="fw-semibold">Travel Viet</h3>
+            <h4 class="fw-semibold">Hoá đơn #@Html.DisplayFor(itemModel => item.ID_HoaDon)</h4>
+        </div>
+        <div class="row g-2">
+            <div class="col-6">
+                <p class="fw-bold">Số hoá đơn: #@Html.DisplayFor(itemModel => item.ID_HoaDon)</p>
+            </div>
+            <div class="col-6 d-flex justify-content-end">
+                <p>Ngày đặt: @Html.DisplayFor(itemModel => item.NgayDat)</p>
+            </div>
+            <div class="col-6">
+                <p>Khách hàng: @Html.DisplayFor(itemModel => item.KHACHHANG.HoTen_KH)</p>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table text-center">
+                <thead class="table-info">
+                    <tr>
+                        <th scope="col">Tên sản phẩm tour</th>
+                        <th scope="col">Số người</th>
+                        <th scope="col">Số lượng người lớn</th>
+                        <th scope="col">Số lượng trẻ em</th>
+                        <th scope="col">Tình trạng thanh toán</th>
+                        <th scope="col">Tổng tiền</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Html.DisplayFor(itemModel => item.SPTOUR.TenSPTour)</td>
+                        <td>@Html.DisplayFor(itemModel => soluong)</td>
+                        <td>@Html.DisplayFor(itemModel => item.SLNguoiLon)</td>
+                        <td>@Html.DisplayFor(itemModel => item.SLTreEm)</td>
+                        <td>@Html.DisplayFor(itemModel => item.TinhTrang)</td>
+                        <td>@Html.DisplayFor(itemModel => formatTongTien)</td>
+                        <td>
+                            @if (item.NgayDat < currentTime)
+                            {
+
+                                if (item.TinhTrang == "Chưa TT")
+                                {<button id="@item.ID_HoaDon" onclick="Delete(this.id)" type="button" class="btn btn-danger">
+                                        Huỷ
+                                    </button>
+                                    <a class="btn btn-primary" id="@item.ID_HoaDon"
+                                       href="@Url.Action("UrlPayment","Home", new {orderCode = @item.ID_HoaDon})">Thanh Toán</a>
+                                }
+                                else
+                                {
+                                    <button class="btn btn-success">Đã Thanh Toán</button>
+                                }
+                            }
+                        </td>
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row g-2">
+            <div class="row row-cols-2 g-2">
+                <p>Điểm đi: @Html.DisplayFor(m => item.SPTOUR.DiemTapTrung)</p>
+                <p>Điểm đến: @Html.DisplayFor(m => item.SPTOUR.DiemDen)</p>
+                <p>Ngày khởi hành: @Html.DisplayFor(m => item.SPTOUR.NgayKhoiHanh)</p>
+                <p>Ngày kết thúc: @Html.DisplayFor(m => item.SPTOUR.NgayKetThuc)</p>
+            </div>
+            <hr />
+            @if (item.TienKhuyenMai <= 0)
+            {
+                <p>Tiền giảm giá: 0đ</p>
+            }
+            else
+            {
+                <p>Tiền giảm giá: @Html.DisplayFor(itemModel => formatTienKhuyenMai)</p>
+            }
+            <p>VAT: @Html.DisplayFor(itemModel => formatVat) (5%)</p>
+            <div class="d-flex justify-content-between">
+                <p>Tổng tiền: @Html.DisplayFor(itemModel => formatTongTien)</p>
+                <p class="fw-bolder fs-5">Tổng tiền phải trả: @Html.DisplayFor(itemModel => formatTienPhaiTra)</p>
+            </div>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    @*<a class="btn btn-primary" id="@item.ID_HoaDon" onclick="ShowMomo(this.id)">Thanh Toán</a>*@
+    @*function ShowMomo(id) {
+            $.get("@Url.Action("ThanhToanMomo","Home")/" + id,
+                function (data) {
+                    $('#myModal').html(data);
+                })
+            $('#myModal').modal('show');
+        }
+        $('#myModal').on('hidden.bs.modal', function (e) {
+            $('.modal-content').html("")
+        })*@
+
+    function Delete(id) {
+        $.get("@Url.Action("HuyTourDaDat", "Home")/" + id,
+            function (data) { $('#ModalDelete').html(data); }).fail(function (xhr, status, error) {
+                console.error(xhr.responseText);
+            })
+            $('#ModalDelete').modal('show');
+        }
+    $('#ModalDelete').on('hidden.bs.modal', function (e) {
+        $('.modal-body').html("")
+    })
+</script>

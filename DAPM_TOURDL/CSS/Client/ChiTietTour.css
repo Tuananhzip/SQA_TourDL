@@ -1,0 +1,144 @@
+body {
+    overflow-x: hidden;
+}
+
+.div-navbar {
+    text-transform: uppercase;
+    padding: 0px;
+    height: auto;
+    width: 100%;
+    background-color: rgba(225,225,225,0.1);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+    position: absolute;
+    z-index: 3;
+}
+
+.nav-item .nav-link:hover {
+    color: rgba(0,0,0,0.7);
+}
+.content-img-details{
+    margin: 16px;
+    width:100%;
+    display: flex;
+    justify-content: center;
+}
+.img-details{
+    width:70%;
+    height:550px;
+    object-fit:cover;
+    object-position:50% 50%;
+    border-radius:15px;
+    transition:0.8s;
+}
+.btn-more {
+    background-color: #2D9596;
+    border: none;
+    color: #F4F7F7;
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 6px;
+    width: 100px;
+    height: 28px;
+    text-decoration: none;
+    text-align: center;
+    float: right;
+}
+
+    .btn-more:hover {
+        background-color: #176B87;
+        transition: ease-out 0.5s;
+    }
+.chitiettour h3 {
+    font-weight: bold;
+}
+
+.chitiettour h3 {
+    font-weight: bold;
+}
+
+.chitiettour h5 {
+    font-weight: bold;
+}
+
+.chitiettour p {
+    font-style: normal;
+    font-weight: 400;
+    color: #222222;
+}
+
+.head {
+    height: 40vh;
+    position: relative;
+}
+.hero-image {
+    height: 40vh;
+    width: 100%;
+    object-fit: cover;
+    filter: brightness(99%)blur(0.5px);
+}
+.content-main {
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 20px;
+    z-index: 1;
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+    color: white;
+}
+.btn {
+    background-color: #2D9596;
+    border: none;
+    color: #F4F7F7;
+    font-size: 22px;
+    font-weight: bold;
+    border-radius: 10px;
+    height: 40px;
+    width: 120px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+    .btn:hover {
+        background-color: #176B87;
+        transition: ease-out 0.5s;
+    }
+
+.title {
+    font-size: 48px;
+    color: black;
+    font-family: Arial;
+    text-transform: uppercase;
+}
+
+.particletext {
+    position: relative;
+    color: transparent;
+    font-weight: 800;
+    background-color: #1e80db !important;
+    background-position: 50% 50%;
+    background: url(https://i.imgur.com/OLQtRxV.png) repeat-y;
+    -webkit-background-clip: text;
+    animation: slide 2s linear infinite;
+}
+.text-right{
+    float: right;
+}
+
+@keyframes slide {
+    0% {
+        background-position: 50% 50%;
+    }
+
+    100% {
+        background-position: 60% 100%;
+    }
+}
+@media only screen and (max-width: 576px){
+    .img-details{
+        width: 100%;
+    }
+}

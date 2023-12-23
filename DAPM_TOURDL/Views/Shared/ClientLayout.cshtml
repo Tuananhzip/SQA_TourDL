@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link type="image/svg" rel="icon" href="~/Images/logo3.jpg"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/CSS/Client/CientLayout.css" />
+    @*bootstrap*@
+    @*bootstrap*@
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <!-- Navbar Start-->
+    <div class="loader">
+        <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExb253Y3Y3dnhnZnp1ZW9yNGJxYjZtNjh5YjBzZnNkejg1ZzkzNmpwZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/dYUslDahf6Uw71gH3t/giphy.gif" />
+    </div>
+    <div class="div-navbar">
+        <nav class="navbar navbar-expand-lg" id="navbar">
+            <div class="container">
+                <a class="navbar-brand" href="#" id="logo"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#myNavbar" style="font-weight:700;border:3px solid white;border-radius:5px">
+                    <span><i class="fa-solid fa-bars"></i></span>
+                </button>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            @Html.ActionLink("Home", "HomePage", "Home", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Tất cả tour", "DanhMucTour", "Home", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Danh mục tour", "DanhMucSanPham", "Home", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Về chúng tôi", "About", "Home", null, new { @class = "nav-link" })
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        @if (Session["IDUser"] != null)
+                        {
+                            <li class="nav-item">
+
+                                <a class="nav-link no-hover" href="@Url.Action("ThongTinCaNhan","Home",new { id = Session["IDUser"] })">Xin chào, @Session["UsernameSS"]</a>
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Đăng xuất", "DangXuat", "Home", null, new { @class = "nav-link" })
+                            </li>
+
+                        }
+                        else
+                        {
+                            @*                            <li class="nav-item">
+                                    @Html.ActionLink("Đăng ký", "DangKy", "Home", new { @class = "nav-link" })
+                                </li>*@
+                            <li class="nav-item">
+                                @Html.ActionLink("Đăng nhập", "LoginAndRegister", "Home", null, new { @class = "nav-link" })
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- Navbar End-->
+
+    <div>@RenderBody()</div>
+
+    <!-- Footer -->
+    <div class="footer-wrap" id="footer">
+        <div class="footer">
+            <div class="container">
+                <div class="row d-flex justify-content-between">
+                    <div class="footer-col">
+                        <h4>Viet Travel</h4>
+                        <ul>
+                            <li><a href="@Url.Action("About", "Home")">Về Chúng Tôi</a></li>
+                            <li><a>Chính Sách Công Ty</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Thông Tin Liên Hệ</h4>
+                        <ul>
+                            <li>
+                                <i class="fa-solid fa-phone" style="color: #f9f9f9;"></i>
+                                +84 985 632 100 (Mr. Johnny)
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-envelope" style="color: #f9f9f9;"></i>
+                                viettravel@customerservice.com
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-compass" style="color: #f9f9f9;"></i>
+                                828 Sư Vạn Hạnh, phường 12, quận 10, HCMC
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Theo Dõi Tại</h4>
+                        <div class="social-links">
+                            <a><i class="fa-brands fa-facebook" style="color: #494949;"></i></a>
+                            <a><i class="fa-brands fa-twitter" style="color: #494949;"></i></a>
+                            <a><i class="fa-brands fa-instagram" style="color: #494949;"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12 text-center">
+                    <hr class="mx-4" />
+                    <p>Copyright © 2023 Viet Travel Company. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <script>
+        window.addEventListener("load", () => {
+            const loader = document.querySelector(".loader");
+            document.querySelector(".loader").classList.add("loader-hidden");
+            document.querySelector(".loader").addEventListener("transitionend", () => {
+/*                document.body.removeChild(document.querySelector(".loader"));
+*/                if (loader.parentElement) {
+                    loader.parentElement.removeChild(loader);
+                }
+            });
+        });
+    </script>
+    @RenderSection("Validation", false)
+</body>
+</html>
