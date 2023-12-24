@@ -286,7 +286,7 @@ namespace DAPM_TOURDL.Controllers
         }
         public ActionResult LichSuDatTour(int id)
         {
-            var data = db.HOADONs.Where(t => t.ID_KH == id).ToList();
+            var data = db.HOADONs.Where(t => t.ID_KH == id).OrderByDescending(item=> item.NgayDat).ToList();
             if(data.Count == 0)
             {
                 ViewBag.Mes = "Bạn chưa đặt tour nào cả";
@@ -394,13 +394,13 @@ namespace DAPM_TOURDL.Controllers
                         //Thanh toán thành công
                         ViewBag.OrderID = orderId;
                         ViewBag.Message = "Thanh toán thành công hóa đơn " + orderId + " | Mã giao dịch: " + vnpayTranId;
+                        ViewBag.ThanhToanThanhCong = "Số tiền thanh toán (VND):" + vnp_Amount.ToString();
                     }
                     else
                     {
                         //Thanh toán không thành công. Mã lỗi: vnp_ResponseCode
                         ViewBag.Message = "Có lỗi xảy ra trong quá trình xử lý hóa đơn " + orderId + " | Mã giao dịch: " + vnpayTranId + " | Mã lỗi: " + vnp_ResponseCode;
                     }
-                    ViewBag.ThanhToanThanhCong = "Số tiền thanh toán (VND):" + vnp_Amount.ToString();
                 }
                 else
                 {
@@ -435,7 +435,7 @@ namespace DAPM_TOURDL.Controllers
         }
 
         [HttpPost]
-        public ActionResult DatTour(FormCollection form, string id)
+        public ActionResult DatTour(FormCollection form, string id,string paymentMethod)
         {
             HOADON hOADON = new HOADON();
             var sptour = db.SPTOURs.FirstOrDefault(s => s.ID_SPTour == id);
@@ -493,11 +493,18 @@ namespace DAPM_TOURDL.Controllers
                     db.Entry(sptour).State = EntityState.Modified;
                     db.HOADONs.Add(hOADON);
                     db.SaveChanges();
-                    var url = UrlPayment(hOADON.ID_HoaDon);
-                    RedirectToAction("UrlPayment", "Home", new { orderCode = hOADON.ID_HoaDon });
+                    if(paymentMethod == "cashBtn")
+                    {
+                        return RedirectToAction("HoaDon", "Home", new { id = hOADON.ID_HoaDon });
+                    }
+                    else
+                    {
+                        var url = UrlPayment(hOADON.ID_HoaDon);
+                        return RedirectToAction("UrlPayment", "Home", new { orderCode = hOADON.ID_HoaDon });
+                    }
                 }
             }
-            return RedirectToAction("UrlPayment", "Home", new { orderCode = hOADON.ID_HoaDon });
+            //return RedirectToAction("UrlPayment", "Home", new { orderCode = hOADON.ID_HoaDon });
             //   return RedirectToAction("HoaDon", "Home", new { id = hOADON.ID_HoaDon });
         }
 

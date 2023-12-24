@@ -68,7 +68,7 @@
                     <button onclick="window.print()"><i class="fas fa-print"></i> Print Invoice</button>
                 </div>
                 <div class="print-button back-home">
-                    <a href=@Url.Action("HomePage","Home")>Quay về trang chủ</a>
+                    <a href=@Url.Action("LichSuDatTour","Home",new { id = Session["IDUser"] })>Quay về trang lịch sử đặt tour</a>
                 </div>
             </div>
         </div>

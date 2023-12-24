@@ -45,24 +45,26 @@
     <div class="text-center">
         @if (ViewBag.ThanhToanThanhCong != null)
         {
-            <p>@ViewBag.OrderID</p>
             <i class="fa-solid fa-circle-check" style="color: #3CB878; font-size:100px;"></i>
             <h2 style="color: #3CB878; margin-top:15px; margin-bottom:15px;">Thanh toán thành công</h2>
             <p>@ViewBag.Message</p>
             <p>Viet Travel sẽ sớm liên hệ quý khách để xác nhận đơn đặt</p>
+            <button>
+                <a href="@Url.Action("LichSuDatTour","Home",new {id = Session["IDUser"] })">Quay về lịch sử đặt tour</a>
+            </button>
+            <button style="margin-left:50px;">
+                <a href="@Url.Action("HoaDon","Home",new { id = ViewBag.OrderID })">Xem biên lai</a>
+            </button>
         }
         else
         {
-            <p class="alert alert-danger">@ViewBag.InnerText</p>
-        }
-        <div>
+            <i class="fas fa-times-circle" style="color: #C41E3A; font-size: 100px;"></i>
+            <h2 style="color: #C41E3A; margin-top: 15px; margin-bottom: 15px;">Thanh toán thất bại</h2>
+            <p class="alert alert-danger">@ViewBag.Message</p>
             <button>
-                <a href="@Url.Action("HomePage","Home")">Quay về</a>
+                <a href="@Url.Action("LichSuDatTour","Home",new {id = Session["IDUser"] })">Quay về lịch sử đặt tour</a>
             </button>
-            <button style="margin-left:50px;">
-                <a href="@Url.Action("HoaDon","Home",new { id = ViewBag.OrderID })"> Xem biên lai</a>
-            </button>
-        </div>
+        }
     </div>
 </body>
 </html>

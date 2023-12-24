@@ -46,11 +46,17 @@
                         <input type="number" class="form-control" name="sotreem" value="0" min="0" required>
                         <label>Số trẻ em: <span class="no-style">Tuỳ chọn</span></label>
                     </div>
+                    <div>
+                        <label>Phương thức thanh toán: <span>*</span></label>
+                        <select id="payment_method" name="payment_method" required onchange="handlePTTT()">
+                            <option value="vnpay" selected>VNPAY</option>
+                            <option value="cash">Tiền Mặt</option>
+                        </select>
+                    </div>
                 </div>
                 @if (ViewBag.Noti != null)
                 {   
                     <div class="alert alert-danger">@ViewBag.Noti</div>
-
                 }
                 @if (ViewBag.SoLuong != null)
                 {
@@ -111,7 +117,11 @@
                     }
                     else if (Session["IDUser"] != null)
                     {
-                        <button type="submit" class="btn-dat-tour" id="myBtn">Đặt Tour</button>
+                        <input type="hidden" name="paymentMethod" id="paymentMethod" value="" />
+                        <button type="submit" class="btn-dat-tour" id="vnpayBtn" style="display: block" onclick="setPaymentMethod('vnpayBtn')">Đặt Tour</button>
+                        <button type="submit" class="btn-dat-tour" id="cashBtn" style="display: none" onclick="setPaymentMethod('cashBtn')">Đặt Tour</button>
+                        //<button type="submit" class="btn-dat-tour" id="myBtn">Đặt Tour</button>
+
                     }
                     else
                     {
@@ -153,6 +163,22 @@
     window.onclick = function (event) {
         if (event.target == modal) {
             modal.style.display = "none";
+        }
+    }
+    function setPaymentMethod(method) {
+        document.getElementById("paymentMethod").value = method;
+    }
+    function handlePTTT() {
+        var paymentMethod = document.getElementById("payment_method").value;
+        var cashButton = document.getElementById("cashBtn");
+        var vnpayButton = document.getElementById("vnpayBtn");
+
+        cashButton.style.display = "none";
+        vnpayButton.style.display = "none";
+        if (paymentMethod === "cash") {
+            cashButton.style.display = "block";
+        } else if (paymentMethod === "vnpay") {
+            vnpayButton.style.display = "block";
         }
     }
 
