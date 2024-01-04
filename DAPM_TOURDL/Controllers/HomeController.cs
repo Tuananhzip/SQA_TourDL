@@ -18,7 +18,7 @@ namespace DAPM_TOURDL.Controllers
 {
     public class HomeController : Controller
     {
-        private TourDLEntities db = new TourDLEntities();
+        private QLTOUREntities db = new QLTOUREntities();
         //https://localhost:44385/
 
         public ActionResult Index()
@@ -340,7 +340,7 @@ namespace DAPM_TOURDL.Controllers
             vnpay.AddRequestData("vnp_TmnCode", vnp_TmnCode);
             vnpay.AddRequestData("vnp_Amount", Price.ToString());
             vnpay.AddRequestData("vnp_BankCode", "");
-            vnpay.AddRequestData("vnp_CreateDate", order.NgayDat.ToString("yyyyMMddHHmmss"));
+            vnpay.AddRequestData("vnp_CreateDate", order.NgayDat.ToString());
             vnpay.AddRequestData("vnp_CurrCode", "VND");
             vnpay.AddRequestData("vnp_IpAddr", Utils.GetIpAddress());
             vnpay.AddRequestData("vnp_Locale", "vn");
@@ -458,8 +458,8 @@ namespace DAPM_TOURDL.Controllers
 
                 int slnguoilon = int.Parse(form["songuoilon"]);
                 int sltreem = int.Parse(form["sotreem"]);
-                int giaguoilon = sptour.GiaNguoiLon;
-                int giatreem = sptour.GiaTreEm;
+                int giaguoilon = (int)sptour.GiaNguoiLon;
+                int giatreem = (int)sptour.GiaTreEm;
                 /*int giaguoilon = int.Parse(form["gianguoilon"]);
                 int giatreem = int.Parse(form["giatreem"]);*/
 

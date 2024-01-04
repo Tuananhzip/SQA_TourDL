@@ -15,7 +15,7 @@ namespace DAPM_TOURDL.Controllers
 {
     public class KHACHHANGsController : Controller
     {
-        private TourDLEntities db = new TourDLEntities();
+        private QLTOUREntities db = new QLTOUREntities();
 
         public ActionResult ExportToExcel()
         {

@@ -15,7 +15,7 @@ namespace DAPM_TOURDL.Controllers
 {
     public class NHANVIENsController : Controller
     {
-        private TourDLEntities db = new TourDLEntities();
+        private QLTOUREntities db = new QLTOUREntities();
 
         //EXPORT EXCEL
         public ActionResult ExportToExcel()
@@ -192,7 +192,7 @@ namespace DAPM_TOURDL.Controllers
         //GET DATA
         public ActionResult CountBookedTours()
         {
-            using (TourDLEntities context = new TourDLEntities())
+            using (QLTOUREntities context = new QLTOUREntities())
             {
                 int bookedToursCount = context.HOADONs.Count(); // Đếm số lượng bản ghi trong bảng HOADON
                 return Json(new { count = bookedToursCount }, JsonRequestBehavior.AllowGet);
@@ -201,7 +201,7 @@ namespace DAPM_TOURDL.Controllers
 
         public ActionResult CountEmploy()
         {
-            using (TourDLEntities context = new TourDLEntities())
+            using (QLTOUREntities context = new QLTOUREntities())
             {
                 int employCount = context.KHACHHANGs.Count(); // Đếm số lượng bản ghi trong bảng HOADON
                 return Json(new { count = employCount }, JsonRequestBehavior.AllowGet);
@@ -210,7 +210,7 @@ namespace DAPM_TOURDL.Controllers
 
         public ActionResult TotalBookingAmount()
         {
-            using (TourDLEntities context = new TourDLEntities())
+            using (QLTOUREntities context = new QLTOUREntities())
             {
                 // Truy vấn dữ liệu từ bảng HOADON
                 var totalAmount = context.HOADONs.Sum(h => h.TongTienTour);
@@ -222,7 +222,7 @@ namespace DAPM_TOURDL.Controllers
 
         public ActionResult GetData()
         {
-            TourDLEntities context = new TourDLEntities();
+            QLTOUREntities context = new QLTOUREntities();
 
             var query = context.HOADONs.Include("SPTOUR")
                 .GroupBy(p => p.SPTOUR.TenSPTour)

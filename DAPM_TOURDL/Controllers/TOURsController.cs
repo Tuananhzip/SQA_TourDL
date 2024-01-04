@@ -12,7 +12,7 @@ namespace DAPM_TOURDL.Controllers
 {
     public class TOURsController : Controller
     {
-        private TourDLEntities db = new TourDLEntities();
+        private QLTOUREntities db = new QLTOUREntities();
 
         // GET: TOURs
         public ActionResult Index(string SearchString)

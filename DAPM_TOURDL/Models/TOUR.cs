@@ -22,7 +22,7 @@ namespace DAPM_TOURDL.Models
     
         public string ID_TOUR { get; set; }
         public string TenTour { get; set; }
-        public int GiaTour { get; set; }
+        public Nullable<int> GiaTour { get; set; }
         public string MoTa { get; set; }
         public string HinhTour { get; set; }
         public string TinhThanh { get; set; }
@@ -30,7 +30,5 @@ namespace DAPM_TOURDL.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SPTOUR> SPTOURs { get; set; }
-
-/*        public static implicit operator TOUR(TOUR v) => throw new NotImplementedException();
-*/    }
+    }
 }

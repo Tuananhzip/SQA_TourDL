@@ -14,7 +14,7 @@ namespace DAPM_TOURDL.Controllers
 {
     public class SPTOURsController : Controller
     {
-        private TourDLEntities db = new TourDLEntities();
+        private QLTOUREntities db = new QLTOUREntities();
 
         // GET: SPTOURs
         public ActionResult Index(string SearchString)

@@ -9,7 +9,7 @@ namespace DAPM_TOURDL.Controllers
 {
     public class LoggingController : Controller
     {
-        private TourDLEntities db = new TourDLEntities();
+        private QLTOUREntities db = new QLTOUREntities();
 
         // GET: Admin
         public ActionResult Index()

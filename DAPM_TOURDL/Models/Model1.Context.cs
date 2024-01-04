@@ -13,10 +13,10 @@ namespace DAPM_TOURDL.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TourDLEntities : DbContext
+    public partial class QLTOUREntities : DbContext
     {
-        public TourDLEntities()
-            : base("name=TourDLEntities")
+        public QLTOUREntities()
+            : base("name=QLTOUREntities")
         {
         }
     
