@@ -18,7 +18,7 @@ namespace DAPM_TOURDL.Controllers
 {
     public class HomeController : Controller
     {
-        private QLTOUREntities db = new QLTOUREntities();
+        private QLTOUR db = new QLTOUR();
         //https://localhost:44385/
 
         public ActionResult Index()
@@ -517,21 +517,24 @@ namespace DAPM_TOURDL.Controllers
         public ActionResult DanhMucTour(string name, int? to, int? from, int page = 1)
         {
             ViewBag.TourNameList = db.TOURs.ToList();
-
             page = page < 1 ? 1 : page;/////
             int pageSize = 9;/////////
             var tours = from t in db.SPTOURs select t;
 
             if (!string.IsNullOrEmpty(name))
             {
-                tours = tours.Where(x => x.TenSPTour.Contains(name));
+                tours = tours.Where(x => x.DiemDen.Contains(name));
+                if(to !=null && from != null)
+                {
+                    tours = tours.Where(x => x.DiemDen.Contains(name) && x.GiaNguoiLon >= to && x.GiaNguoiLon <= from);
+                }
                 if (to != null)
                 {
-                    tours = tours.Where(x => x.TenSPTour.Contains(name) && x.GiaNguoiLon >= to);
+                    tours = tours.Where(x => x.DiemDen.Contains(name) && x.GiaNguoiLon >= to);
                 }
                 if (from != null)
                 {
-                    tours = tours.Where(x => x.TenSPTour.Contains(name) && x.GiaNguoiLon <= from);
+                    tours = tours.Where(x => x.DiemDen.Contains(name) && x.GiaNguoiLon <= from);
                 }
             }
             else

@@ -10,39 +10,39 @@
     <video autoplay loop muted plays-inline class="hero-image"><source src="~/Images/Client/Video/ocean.mp4" /></video>
 </div>
 <div class="container my-3">
-    <form action="DanhMucTour" method="get">
-        <div class="row g-4">
-            <div class="col-3 d-flex justify-content-end">
-                @Html.Partial("PartialDanhMucTour")
-            </div>
-            <div class="col-3 d-flex justify-content-end">
-                <select class="form-select form-select-sm" name="to">
-                    <option value="" hidden>Giá từ</option>
-                    <option value="0">0 VND</option>
-                    <option value="2000000">2.000.000 VND</option>
-                    <option value="4000000">4.000.000 VND</option>
-                    <option value="6000000">6.000.000 VND</option>
-                    <option value="8000000">8.000.000 VND</option>
-                    <option value="10000000">10.000.000 VND</option>
+        <form action="DanhMucTour" method="get">
+            <div class="row g-4">
+                <div class="col-3 d-flex justify-content-end">
+                    @Html.Partial("PartialDanhMucTour")
+                </div>
+                <div class="col-3 d-flex justify-content-end">
+                    <select class="form-select form-select-sm" name="to">
+                        <option value="" hidden>Giá từ</option>
+                        <option value="0">0 VND</option>
+                        <option value="2000000">2.000.000 VND</option>
+                        <option value="4000000">4.000.000 VND</option>
+                        <option value="6000000">6.000.000 VND</option>
+                        <option value="8000000">8.000.000 VND</option>
+                        <option value="10000000">10.000.000 VND</option>
 
-                </select>
+                    </select>
+                </div>
+                <div class="col-3 d-flex justify-content-end">
+                    <select class="form-select form-select-sm" name="from">
+                        <option value="" hidden>Đến giá</option>
+                        <option value="0">0 VND</option>
+                        <option value="2000000">2.000.000 VND</option>
+                        <option value="4000000">4.000.000 VND</option>
+                        <option value="6000000">6.000.000 VND</option>
+                        <option value="8000000">8.000.000 VND</option>
+                        <option value="10000000">10.000.000 VND</option>
+                    </select>
+                </div>
+                <div class="col-3 d-flex justify-content-center">
+                    <input type="submit" value="Search" class="btn-search">
+                </div>
             </div>
-            <div class="col-3 d-flex justify-content-end">
-                <select class="form-select form-select-sm" name="from">
-                    <option value="" hidden>Đến giá</option>
-                    <option value="0">0 VND</option>
-                    <option value="2000000">2.000.000 VND</option>
-                    <option value="4000000">4.000.000 VND</option>
-                    <option value="6000000">6.000.000 VND</option>
-                    <option value="8000000">8.000.000 VND</option>
-                    <option value="10000000">10.000.000 VND</option>
-                </select>
-            </div>
-            <div class="col-3 d-flex justify-content-center">
-                <input type="submit" value="Search" class="btn-search">
-            </div>
-        </div>
-    </form>
+        </form>
 </div>
 <div class="container" style="width:100%;height:auto;">
     @if (ViewBag.MesSearch != null)

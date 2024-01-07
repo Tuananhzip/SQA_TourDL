@@ -14,7 +14,7 @@ namespace DAPM_TOURDL.Controllers
 {
     public class HOADONsController : Controller
     {
-        private QLTOUREntities db = new QLTOUREntities();
+        private QLTOUR db = new QLTOUR();
 
         public ActionResult ExportToExcel()
         {

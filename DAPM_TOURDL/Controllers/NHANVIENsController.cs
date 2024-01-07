@@ -15,7 +15,7 @@ namespace DAPM_TOURDL.Controllers
 {
     public class NHANVIENsController : Controller
     {
-        private QLTOUREntities db = new QLTOUREntities();
+        private QLTOUR db = new QLTOUR();
 
         //EXPORT EXCEL
         public ActionResult ExportToExcel()
@@ -91,7 +91,6 @@ namespace DAPM_TOURDL.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "ID_NV,HoTen_NV,GioiTinh_NV,NgaySinh_NV,MatKhau,Mail_NV,ChucVu,SDT_NV")] NHANVIEN nHANVIEN)
         {
             if(db.NHANVIENs.Any(x=>x.SDT_NV == nHANVIEN.SDT_NV) || db.KHACHHANGs.Any(x=>x.SDT_KH == nHANVIEN.SDT_NV))
@@ -132,7 +131,6 @@ namespace DAPM_TOURDL.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
         public ActionResult Edit([Bind(Include = "ID_NV,HoTen_NV,GioiTinh_NV,NgaySinh_NV,MatKhau,Mail_NV,ChucVu,SDT_NV")] NHANVIEN nHANVIEN)
         {
             // Kiểm tra số điện thoại và email trùng lặp, trừ nhân viên đang được chỉnh sửa
@@ -171,7 +169,6 @@ namespace DAPM_TOURDL.Controllers
         // POST: NHANVIENs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             NHANVIEN nHANVIEN = db.NHANVIENs.Find(id);
@@ -192,7 +189,7 @@ namespace DAPM_TOURDL.Controllers
         //GET DATA
         public ActionResult CountBookedTours()
         {
-            using (QLTOUREntities context = new QLTOUREntities())
+            using (QLTOUR context = new QLTOUR())
             {
                 int bookedToursCount = context.HOADONs.Count(); // Đếm số lượng bản ghi trong bảng HOADON
                 return Json(new { count = bookedToursCount }, JsonRequestBehavior.AllowGet);
@@ -201,7 +198,7 @@ namespace DAPM_TOURDL.Controllers
 
         public ActionResult CountEmploy()
         {
-            using (QLTOUREntities context = new QLTOUREntities())
+            using (QLTOUR context = new QLTOUR())
             {
                 int employCount = context.KHACHHANGs.Count(); // Đếm số lượng bản ghi trong bảng HOADON
                 return Json(new { count = employCount }, JsonRequestBehavior.AllowGet);
@@ -210,7 +207,7 @@ namespace DAPM_TOURDL.Controllers
 
         public ActionResult TotalBookingAmount()
         {
-            using (QLTOUREntities context = new QLTOUREntities())
+            using (QLTOUR context = new QLTOUR())
             {
                 // Truy vấn dữ liệu từ bảng HOADON
                 var totalAmount = context.HOADONs.Sum(h => h.TongTienTour);
@@ -222,7 +219,7 @@ namespace DAPM_TOURDL.Controllers
 
         public ActionResult GetData()
         {
-            QLTOUREntities context = new QLTOUREntities();
+            QLTOUR context = new QLTOUR();
 
             var query = context.HOADONs.Include("SPTOUR")
                 .GroupBy(p => p.SPTOUR.TenSPTour)

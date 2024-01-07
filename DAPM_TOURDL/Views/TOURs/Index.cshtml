@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<DAPM_TOURDL.Models.TOUR>
-
+@using System.Globalization
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
@@ -36,7 +36,12 @@
                         #@Html.DisplayFor(modelItem => item.ID_TOUR)
                     </h2>
                     <h4 class="card-title">@Html.DisplayFor(modelItem => item.TenTour) </h4>
-                    <p class="card-text"> Giá tour: @Html.DisplayFor(modelItem => item.GiaTour) </p>
+                    @{ 
+                        int giaTour = (int)item.GiaTour;
+                        CultureInfo cul = CultureInfo.GetCultureInfo("vi-VN");   // try with "en-US"
+                        string formatPrice = giaTour.ToString("#,###", cul.NumberFormat);
+                    }
+                    <p class="card-text"> Giá tour: @Html.DisplayFor(modelItem => formatPrice) VND</p>
                     <p class="card-text">Loại tour: @Html.DisplayFor(modelItem => item.LoaiTour) </p>
                     <p class="card-text">Tỉnh thành: @Html.DisplayFor(modelItem => item.TinhThanh)</p>
                     <p class="card-text">Mô tả: @Html.DisplayFor(modelItem => item.MoTa)</p>
