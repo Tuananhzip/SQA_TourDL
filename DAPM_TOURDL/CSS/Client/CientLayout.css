@@ -73,17 +73,21 @@
 .div-navbar {
     z-index: 99;
     position: fixed;
-    top:0;
-    right:0;
-    left:0;
+    top: 0;
+    right: 0;
+    left: 0;
     text-transform: uppercase;
     height: auto;
     width: 100%;
     background-color: rgba(225,225,225,0.3);
     -webkit-backdrop-filter: blur(3px);
     backdrop-filter: blur(3px);
+    transition: background-color 300ms ease-in-out;
 }
-
+    .div-navbar.scrolled {
+        background-color: rgba(0,0,0,0.4);
+        color:white
+    }
 #logo span {
     color: white;
 }
@@ -190,6 +194,7 @@ ul li a {
         color: #bbbbbb;
         display: block;
         transition: all 0.5s ease;
+        cursor: pointer;
     }
 
         .footer-col ul li:hover {
@@ -223,6 +228,7 @@ ul li a {
         line-height: 40px;
         border-radius: 50%;
         transition: all 0.6s ease;
+        cursor: pointer;
     }
 
         .footer-col .social-links a:hover {

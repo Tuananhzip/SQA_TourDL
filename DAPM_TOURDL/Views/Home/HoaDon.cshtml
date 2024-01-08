@@ -39,7 +39,11 @@
                         var tienKM = 0;
                         if (Model.TienKhuyenMai != null)
                         {
-                            tienKM = Model.TienKhuyenMai;
+                            tienKM = (int)Model.TienKhuyenMai;
+                        }
+                        else
+                        {
+                            tienKM = 0;
                         }
                     }
                     <label for="TienTour">Tiền giảm giá:</label>

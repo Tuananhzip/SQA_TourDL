@@ -16,7 +16,7 @@ namespace DAPM_TOURDL.Models
 
         public int? TongTienTour { get; set; }
 
-        public DateTime? NgayDat { get; set; }
+        public DateTime NgayDat { get; set; }
 
         [StringLength(20)]
         public string TinhTrang { get; set; }

@@ -334,13 +334,13 @@ namespace DAPM_TOURDL.Controllers
 
             //Build URL for VNPAY
             VnPayLibrary vnpay = new VnPayLibrary();
-            var Price = (long)order.TienPhaiTra * 100;
+            var Price = order.TienPhaiTra * 100;
             vnpay.AddRequestData("vnp_Version", VnPayLibrary.VERSION);
             vnpay.AddRequestData("vnp_Command", "pay");
             vnpay.AddRequestData("vnp_TmnCode", vnp_TmnCode);
             vnpay.AddRequestData("vnp_Amount", Price.ToString());
             vnpay.AddRequestData("vnp_BankCode", "");
-            vnpay.AddRequestData("vnp_CreateDate", order.NgayDat.ToString());
+            vnpay.AddRequestData("vnp_CreateDate", order.NgayDat.ToString("yyyyMMddHHmmss"));
             vnpay.AddRequestData("vnp_CurrCode", "VND");
             vnpay.AddRequestData("vnp_IpAddr", Utils.GetIpAddress());
             vnpay.AddRequestData("vnp_Locale", "vn");

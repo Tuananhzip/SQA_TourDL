@@ -14,3 +14,14 @@ window.onscroll = () => {
         }
     })
 }
+
+var navbar = document.getElementById("nav-bar");
+
+function toggleNavbarColor() {
+    if (window.scrollY > window.innerHeight) {
+        navbar.classList.add("scrolled");
+    } else {
+        navbar.classList.remove("scrolled");
+    }
+}
+window.addEventListener("scroll", toggleNavbarColor);

@@ -90,21 +90,22 @@ body {
     color: white;
 }
 .btn {
-    background-color: #2D9596;
+    background-color: #7FC7D9;
     border: none;
-    color: #F4F7F7;
+    color: white;
     font-size: 22px;
     font-weight: bold;
     border-radius: 10px;
-    height: 40px;
-    width: 120px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    padding: 8px 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 300ms ease-in;
 }
     .btn:hover {
-        background-color: #176B87;
-        transition: ease-out 0.5s;
+        background-color: #7BD3EA;
+        transform:scale(1.05);
+        color:white;
     }
 
 .title {

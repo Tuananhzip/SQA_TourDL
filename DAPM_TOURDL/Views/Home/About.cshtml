@@ -1,22 +1,21 @@
 ﻿@{
     ViewBag.Title = "Về Chúng Tôi";
-    Layout = null;
+    Layout = "~/Views/Shared/ClientLayout.cshtml";
 }
 <link href="~/CSS/Client/AboutUs.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <section class="hr">
-    <div class="container">
+    <div class="container-image">
         <div class="hr-image">
             <img src="~/Images/Client/AboutUs/Banner1.png" />
-            <p>Travel Dalats - Đắm chìm trong vẻ đẹp thiên nhiên, vị ngọt của cuộc sống</p>
+            <p class="text-p">Travel Dalats - Đắm chìm trong vẻ đẹp thiên nhiên, vị ngọt của cuộc sống</p>
         </div>
-        <a href="@Url.Action("HomePage","Home")"><i class="fa-solid fa-house"></i></a>
     </div>
 </section>
 <div class="animate-css" style="background:#EEE2DE">
     <section class="animate-css sec-1">
-        <div class="container">
+        <div class="container-image">
             <div class="hr-image animate">
                 <img src="~/Images/Client/AboutUs/Banner2.png" />
             </div>
@@ -31,7 +30,7 @@
         </div>
     </section>
     <section class="animate-css sec-2 show-animate">
-        <div class="container">
+        <div class="container-image">
             <div class="hr-content">
                 <h1 class="animate">
                     Sứ mệnh của chúng tôi<i class="fas fa-rocket" style="color: #FD8D14; margin-left: 20px"></i>
@@ -46,7 +45,7 @@
         </div>
     </section>
     <section class="animate-css sec-3">
-        <div class="container">
+        <div class="container-image">
             <div class="hr-image animate">
                 <img src="~/Images/Client/AboutUs/Banner4.png"/>
             </div>
@@ -64,7 +63,7 @@
         </div>
     </section>
     <section class="animate-css sec-4">
-        <div class="container">
+        <div class="container-image">
             <div class="hr-content">
                 <h1 class="animate">
                     Cam kết chất lượng <span style="color:yellow;font-size:38px">&#9733; &#9733; &#9733; &#9733; &#9733;</span>

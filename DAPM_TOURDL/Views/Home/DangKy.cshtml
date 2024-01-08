@@ -34,11 +34,11 @@
             <label></label>
         </div>
         <div class="infield">
-            @Html.EditorFor(model => model.CCCD, new { htmlAttributes = new { @class = "input", placeholder = "Căn Cước Công Dân", @required = "required" } })
+            @Html.EditorFor(model => model.CCCD, new { htmlAttributes = new { @class = "input", placeholder = "Căn Cước Công Dân", @required = "required",type="text",oninput= "inputValidateNumber(this)", maxlength = "12" } })
             <label></label>
         </div>
         <div class="infield">
-            @Html.EditorFor(model => model.SDT_KH, new { htmlAttributes = new { @class = "input", placeholder = "Số Điện Thoại", @required = "required" } })
+            @Html.EditorFor(model => model.SDT_KH, new { htmlAttributes = new { @class = "input", placeholder = "Số Điện Thoại", @required = "required", type = "text", oninput = "inputValidateNumber(this)", maxlength="10" } })
             <label></label>
         </div>
         <div class="infield">
@@ -53,3 +53,9 @@
 
     </form>
 }
+<script>
+    const inputValidateNumber = (e) => {
+        const validateValue = e.value.replace(/[^0-9]/g, '');
+        e.value = validateValue;
+    }
+</script>

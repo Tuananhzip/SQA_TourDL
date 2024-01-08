@@ -16,40 +16,30 @@ video {
 .hr {
     background-color: #EEE2DE;
     overflow: hidden;
+    position:relative;
 }
-
-    .hr a {
-        height: auto;
+    .hr .text-p {
         position: absolute;
-        top: 55px;
-        left: 30px;
-        margin: 10px;
-        padding: 10px;
-        border-radius: 5px;
-        text-decoration: none;
+        left: 0;
+        top: 40%;
+        left: 10%;
         color: white;
-        font-size: 28px;
-        background: #0094ff;
-        font-weight: bold;
-        color: white;
-        border-radius: 16px;
-        transition: 1s;
+        font-weight: bolder;
+        font-size: 32px;
+        background-color: rgba(0, 0, 0, 0.5);
+    }   
+
+
+
+    .heading h1 {
+        color: #0094ff;
+        font-size: 55px;
+        text-align: center;
+        margin-top: 35px;
+        animation: zoom-out 4s ease;
     }
 
-        .hr a:hover {
-            background: #0094ff;
-            opacity: 0.6;
-        }
-
-.heading h1 {
-    color: #0094ff;
-    font-size: 55px;
-    text-align: center;
-    margin-top: 35px;
-    animation: zoom-out 4s ease;
-}
-
-.container {
+.container-image {
     display: flex;
     justify-items: center;
     align-items: center;
@@ -166,6 +156,9 @@ img {
 
     .hr-image {
         width: 100%;
+    }
+    .hr .text-p{
+        font-size:24px;
     }
 }
 

@@ -1,4 +1,4 @@
-namespace DAPM_TOURDL.Models
+﻿namespace DAPM_TOURDL.Models
 {
     using System;
     using System.Collections.Generic;
@@ -24,7 +24,7 @@ namespace DAPM_TOURDL.Models
         public string GioiTinh_KH { get; set; }
 
         [Column(TypeName = "date")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public DateTime? NgaySinh_KH { get; set; }
 
         public string MatKhau { get; set; }

@@ -1,6 +1,9 @@
 ﻿.div-navbar {
     display: none;
 }
+body{
+    overflow-x:hidden
+}
 
 div.btn-back-profile a {
     padding: 6px 15px;

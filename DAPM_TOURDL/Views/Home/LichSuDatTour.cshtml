@@ -31,11 +31,11 @@
 {
     var currentTime = DateTime.Now;
     var paymentTime = currentTime.AddDays(7);
-    string formatTongTien = String.Format("{0:C}", item.TongTienTour);
-    string formatTienPhaiTra = String.Format("{0:C}", item.TienPhaiTra);
-    string formatTienKhuyenMai = String.Format("{0:C}", item.TienKhuyenMai);
+    string formatTongTien = string.Format("{0:#,#} VND", item.TongTienTour);
+    string formatTienPhaiTra = string.Format("{0:#,#} VND", item.TienPhaiTra);
+    string formatTienKhuyenMai = string.Format("{0:#,#} VND", item.TienKhuyenMai);
     var Vat = item.TienPhaiTra - item.TongTienTour;
-    string formatVat = String.Format("{0:C}", Vat);
+    string formatVat = string.Format("{0:#,#} VND", Vat);
     var soluong = item.SLNguoiLon + item.SLTreEm;
     <div class="container-md border my-5 shadow-sm rounded">
         <div class="d-flex justify-content-between">
@@ -87,7 +87,7 @@
                                 }
                                 else
                                 {
-                                    <button class="btn btn-success">Đã Thanh Toán</button>
+                                    <button class="btn-done" style="cursor:default">Đã Thanh Toán</button>
                                 }
                             }
                         </td>
@@ -111,7 +111,7 @@
             {
                 <p>Tiền giảm giá: @Html.DisplayFor(itemModel => formatTienKhuyenMai)</p>
             }
-            <p>VAT: @Html.DisplayFor(itemModel => formatVat) (5%)</p>
+            <p>VAT: @Html.DisplayFor(itemModel => formatVat) <b>(5%)</b></p>
             <div class="d-flex justify-content-between">
                 <p>Tổng tiền: @Html.DisplayFor(itemModel => formatTongTien)</p>
                 <p class="fw-bolder fs-5">Tổng tiền phải trả: @Html.DisplayFor(itemModel => formatTienPhaiTra)</p>
