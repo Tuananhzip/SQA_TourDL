@@ -76,7 +76,7 @@
 
 .modal-header {
     padding: 2px 16px;
-    background-color: #4790d2;
+    background-color: #2D9596;
     color: white;
 }
 .modal-header h4{
@@ -95,13 +95,14 @@
         padding: 10px 20px;
         text-decoration: none;
         font-weight: bold;
-        background: #4790d2;
+        background: #2D9596;
         color: white;
         border-radius: 10px;
-        transition:0.6s;    
+        transition: 0.6s;
     }
         .modal-body a:hover {
-            background: #0b5ed7;
+            background: #2D9596;
+            opacity: 0.8;
         }
 
 .modal-body h2{
@@ -110,7 +111,7 @@
 
 .modal-footer {
     padding: 2px 16px;
-    background-color: #4790d2;
+    background-color: #2D9596;
     color: white;
 }
 

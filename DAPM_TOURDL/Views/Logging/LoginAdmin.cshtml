@@ -27,6 +27,12 @@
                     @Html.ValidationMessageFor(m => m.MatKhau)
                     @Html.AntiForgeryToken()
                     <button value="login" type="submit">Login</button>
+                    @{
+                        if (ViewBag.Notification != null)
+                        {
+                              <p class="text-danger">@ViewBag.Notification</p>
+                        }
+                    }
                 </form>
             </div>
         </div>

@@ -200,7 +200,7 @@ namespace DAPM_TOURDL.Controllers
         {
             using (QLTOUR context = new QLTOUR())
             {
-                int employCount = context.KHACHHANGs.Count(); // Đếm số lượng bản ghi trong bảng HOADON
+                int employCount = context.KHACHHANGs.Count(); // Đếm số lượng bản ghi trong bảng KHACHHANG
                 return Json(new { count = employCount }, JsonRequestBehavior.AllowGet);
             }
         }
@@ -210,7 +210,9 @@ namespace DAPM_TOURDL.Controllers
             using (QLTOUR context = new QLTOUR())
             {
                 // Truy vấn dữ liệu từ bảng HOADON
-                var totalAmount = context.HOADONs.Sum(h => h.TongTienTour);
+                var totalAmount = context.HOADONs
+                                              .Where(hd => hd.TinhTrang == "Đã TT")
+                                              .Sum(h => h.TongTienTour);
 
                 // Trả về tổng tiền dạng JSON hoặc View
                 return Json(new { TotalAmount = totalAmount }, JsonRequestBehavior.AllowGet);
