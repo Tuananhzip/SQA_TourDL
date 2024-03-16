@@ -16,6 +16,40 @@ namespace DAPM_TOURDL.Controllers
     {
         private QLTOUR db = new QLTOUR();
 
+        public ActionResult ExportToExcel()
+        {
+            var sanPhamTours = db.SPTOURs;
+            using (var workbook = new XLWorkbook())
+            {
+                var worksheet = workbook.Worksheets.Add("SanPhamTour");
+                var currentrow = 1;
+                worksheet.Cell(currentrow, 1).Value = "ID sản phẩm tour";
+                worksheet.Cell(currentrow, 2).Value = "Tên sản phẩm tour";
+                worksheet.Cell(currentrow, 3).Value = "Số người";
+                worksheet.Cell(currentrow, 4).Value = "Giá người lớn";
+                worksheet.Cell(currentrow, 5).Value = "Giá trẻ em";
+                worksheet.Cell(currentrow, 6).Value = "Điểm tập trung";
+                worksheet.Cell(currentrow, 7).Value = "Điểm đến";
+                foreach(var sanPhamTour in sanPhamTours)
+                {
+                    currentrow++;
+                    worksheet.Cell(currentrow, 1).Value = sanPhamTour.ID_SPTour;
+                    worksheet.Cell(currentrow, 2).Value = sanPhamTour.TenSPTour;
+                    worksheet.Cell(currentrow, 3).Value = sanPhamTour.SoNguoi;
+                    worksheet.Cell(currentrow, 4).Value = sanPhamTour.GiaNguoiLon;
+                    worksheet.Cell(currentrow, 5).Value = sanPhamTour.GiaTreEm;
+                    worksheet.Cell(currentrow, 6).Value = sanPhamTour.DiemTapTrung;
+                    worksheet.Cell(currentrow, 7).Value = sanPhamTour.DiemDen;
+                }
+                using (var stream = new MemoryStream())
+                {
+                    workbook.SaveAs(stream);
+                    var content = stream.ToArray();
+                    return File(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "DanhSachSanPhamTour.xlsx");
+                }
+            }
+        }
+
         // GET: SPTOURs
         public ActionResult Index(string SearchString)
         {

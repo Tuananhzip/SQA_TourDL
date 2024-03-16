@@ -23,7 +23,7 @@ namespace DAPM_TOURDL.Controllers
             //var khS = db.HOADONs.Include(h => h.KHACHHANG).Include(h => h.SPTOUR);
             using (var workbook = new XLWorkbook())
             {
-                var worksheet = workbook.Worksheets.Add("HOADON");
+                var worksheet = workbook.Worksheets.Add("KhachHang");
                 var currentrow = 1;
                 worksheet.Cell(currentrow, 1).Value = "ID Khách hàng";
                 worksheet.Cell(currentrow, 2).Value = "Tên khách hàng";

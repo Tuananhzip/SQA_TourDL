@@ -104,13 +104,15 @@
                             <p>Giá trẻ em:</p>
                             <p>Giá người lớn:</p>
                             <p>Số ghế còn:</p>
+                            <p>VAT:</p>
                             <p>Tổng tiền:</p>
                         </div>
                         <div class="info-tour">
                             <p>@string.Format("{0:#,#} VND", Model.GiaTreEm)</p>
                             <p>@string.Format("{0:#,#} VND", Model.GiaNguoiLon)</p>
                             <p>@Model.SoNguoi</p>
-                            <p id="tonggia">@string.Format("{0:#,#} VND", Model.GiaNguoiLon)</p>
+                            <p>@string.Format("{0:#,#} VND", Model.GiaNguoiLon * 0.05)</p>
+                            <p id="tonggia">@string.Format("{0:#,#} VND", Model.GiaNguoiLon + Model.GiaNguoiLon * 0.05)</p>
                         </div>
                     </div>
                     @if (Model.SoNguoi <= 0)
@@ -178,8 +180,10 @@
         var giaNguoiLon = @Model.GiaNguoiLon;
         var giaTreEm = @Model.GiaTreEm;
         var tongGia = (soNguoiLon * giaNguoiLon) + (soTreEm * giaTreEm);
-        tongGia = tongGia.toLocaleString("it-IT", { style: "currency", currency: "VND" });
-        document.getElementById("tonggia").textContent = tongGia;
+        var giaVAT = tongGia + tongGia * 0.05;
+        giaVAT = giaVAT > 0 ? giaVAT : 0;
+        giaVAT = giaVAT.toLocaleString("it-IT", { style: "currency", currency: "VND" });
+        document.getElementById("tonggia").textContent = giaVAT;
     }
     function setPaymentMethod(method) {
         document.getElementById("paymentMethod").value = method;

@@ -48,6 +48,7 @@
             <i class="fa-solid fa-circle-check" style="color: #3CB878; font-size:100px;"></i>
             <h2 style="color: #3CB878; margin-top:15px; margin-bottom:15px;">Thanh toán thành công</h2>
             <p>@ViewBag.Message</p>
+            <p>@ViewBag.ThanhToanThanhCong</p>
             <p>Viet Travel sẽ sớm liên hệ quý khách để xác nhận đơn đặt</p>
             <button>
                 <a href="@Url.Action("LichSuDatTour","Home",new {id = Session["IDUser"] })">Quay về lịch sử đặt tour</a>

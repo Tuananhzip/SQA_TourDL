@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using ClosedXML.Excel;
 using DAPM_TOURDL.Models;
 
 namespace DAPM_TOURDL.Controllers
@@ -14,6 +16,40 @@ namespace DAPM_TOURDL.Controllers
     {
         private QLTOUR db = new QLTOUR();
 
+        public ActionResult ExportToExcel()
+        {
+            var tours = db.TOURs;
+            //var khS = db.HOADONs.Include(h => h.KHACHHANG).Include(h => h.SPTOUR);
+            using (var workbook = new XLWorkbook())
+            {
+                var worksheet = workbook.Worksheets.Add("DanhSachTour");
+                var currentrow = 1;
+                worksheet.Cell(currentrow, 1).Value = "ID khách hàng";
+                worksheet.Cell(currentrow, 2).Value = "Tên tour";
+                worksheet.Cell(currentrow, 3).Value = "Giá tour";
+                worksheet.Cell(currentrow, 4).Value = "Loại tour";
+                worksheet.Cell(currentrow, 5).Value = "Mô tả";
+                foreach (var tour in tours)
+                {
+                    currentrow++;
+                    worksheet.Cell(currentrow, 1).Value = tour.ID_TOUR;
+                    worksheet.Cell(currentrow, 2).Value = tour.TenTour;
+                    worksheet.Cell(currentrow, 3).Value = tour.GiaTour;
+                    worksheet.Cell(currentrow, 4).Value = tour.LoaiTour;
+                    worksheet.Cell(currentrow, 5).Value = tour.MoTa;
+                }
+                using (var stream = new MemoryStream())
+                {
+                    workbook.SaveAs(stream);
+                    var content = stream.ToArray();
+                    return File(
+                        content,
+                        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                        "DanhSachTour.xlsx"
+                        );
+                }
+            }
+        }
         // GET: TOURs
         public ActionResult Index(string SearchString)
         {

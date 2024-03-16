@@ -20,10 +20,10 @@ namespace DAPM_TOURDL.Controllers
         //EXPORT EXCEL
         public ActionResult ExportToExcel()
         {
-            var khS = db.NHANVIENs;
+            var danhSachNhanVien = db.NHANVIENs;
             using (var workbook = new XLWorkbook())
             {
-                var worksheet = workbook.Worksheets.Add("HOADON");
+                var worksheet = workbook.Worksheets.Add("NhanVien");
                 var currentrow = 1;
                 worksheet.Cell(currentrow, 1).Value = "ID Nhân viên";
                 worksheet.Cell(currentrow, 2).Value = "Tên nhân viên";
@@ -31,15 +31,15 @@ namespace DAPM_TOURDL.Controllers
                 worksheet.Cell(currentrow, 4).Value = "SĐT";
                 worksheet.Cell(currentrow, 5).Value = "Email";
                 worksheet.Cell(currentrow, 6).Value = "Chức vụ";
-                foreach (var hoadon in khS)
+                foreach (var nhanVien in danhSachNhanVien)
                 {
                     currentrow++;
-                    worksheet.Cell(currentrow, 1).Value = hoadon.ID_NV;
-                    worksheet.Cell(currentrow, 2).Value = hoadon.HoTen_NV;
-                    worksheet.Cell(currentrow, 3).Value = hoadon.GioiTinh_NV;
-                    worksheet.Cell(currentrow, 4).Value = hoadon.SDT_NV;
-                    worksheet.Cell(currentrow, 5).Value = hoadon.Mail_NV;
-                    worksheet.Cell(currentrow, 6).Value = hoadon.ChucVu;
+                    worksheet.Cell(currentrow, 1).Value = nhanVien.ID_NV;
+                    worksheet.Cell(currentrow, 2).Value = nhanVien.HoTen_NV;
+                    worksheet.Cell(currentrow, 3).Value = nhanVien.GioiTinh_NV;
+                    worksheet.Cell(currentrow, 4).Value = nhanVien.SDT_NV;
+                    worksheet.Cell(currentrow, 5).Value = nhanVien.Mail_NV;
+                    worksheet.Cell(currentrow, 6).Value = nhanVien.ChucVu;
                 }
                 using (var stream = new MemoryStream())
                 {
